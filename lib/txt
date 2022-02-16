@@ -1,0 +1,63 @@
+    Container(child: TabBarView(physics: NeverScrollableScrollPhysics(),controller: tabController,children:[
+     Container(width: MediaQuery.of(context).size.width,height: 300,child: Column(children: [
+    Container(width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height* 0.2,child:
+    CarouselSlider.builder(options: CarouselOptions(height: MediaQuery.of(context).size.height*0.45,
+    onPageChanged: (ind,reason){
+    setState(() {
+    active = ind;
+    });
+    }
+    ,autoPlay: true),
+    itemBuilder: (context,index , real){
+    return Container(width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,child: Image(fit:BoxFit.fill,image: NetworkImage(bannerimages[active]),));
+    },itemCount: bannerimages.length,))
+    ,Container(
+    child:data.length == 0 ? Container(height: MediaQuery.of(context).size.height*0.35,child: Center(child : Text("لا يوجد هناك شئ لعرضه"))): Container(height: MediaQuery.of(context).size.height*0.82,
+    child: GridView.builder(scrollDirection: Axis.horizontal,gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+    itemCount: data.length, itemBuilder: (context,i){
+    return InkWell(onTap: ()=> homeScreenlogic.navigatetodetail(data[i]["id"]),
+    child: Container(margin: EdgeInsets.all(MediaQuery.of(context).size.height*0.02),decoration: BoxDecoration(  boxShadow: [
+    BoxShadow(
+    color: Colors.black26,
+    blurRadius: 1.0,
+    spreadRadius: 0.0,
+    offset: Offset(2.0, 2.0), // shadow direction: bottom right
+    )
+    ],color: Colors.white,borderRadius: BorderRadius.circular(20)),width: MediaQuery.of(context).size.width * 0.2,height: MediaQuery.of(context).size.height*0.25,
+    child: Column(children: [
+    Container(height: MediaQuery.of(context).size.height*0.25,child: ClipRRect(borderRadius: BorderRadius.all(Radius.circular(20)),child: Image(fit: BoxFit.fill,image: NetworkImage(data[i]["images"][0]["path"]),)),)
+    ,Container(child: Row(children: [Expanded(child :Container(margin: EdgeInsets.only(left: MediaQuery.of(context).size.height*0.025),alignment: Alignment.centerLeft,child: Text(data[i]["price"] ,style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.025,color: Colors.blue),),)),Expanded(child: Container(margin: EdgeInsets.only(right: MediaQuery.of(context).size.height*0.025),alignment: Alignment.centerRight,child: Text(data[i]["name"],style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.025,color: Colors.blue),)),)],),),
+    Container(child: Row(children: [Expanded(child: Container()),Expanded(child: Container(margin: EdgeInsets.only(left: MediaQuery.of(context).size.height*0.025),alignment: Alignment.centerLeft,child: IconButton(onPressed:()async{
+    var dos = await homeScreenlogic.minus(data[i]["id"],shoppingbasket[i]["num"]);
+    shoppingbasket[i]["num"] = dos;
+    setState(() {});
+    },icon : Icon( Icons.indeterminate_check_box,color: Colors.blue,),))),Expanded(child: Container(alignment: Alignment.center,child: Text(shoppingbasket[i]["num"].toString(),style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.025),),)),Expanded(child: Container(margin: EdgeInsets.only(right: MediaQuery.of(context).size.height*0.025),alignment: Alignment.centerRight,child: IconButton(onPressed: ()async{
+    var dos = await homeScreenlogic.plus(data[i]["id"],shoppingbasket[i]["num"]);
+    shoppingbasket[i]["num"] = dos;
+    setState(() {});
+    },icon:Icon( Icons.add_box_sharp,color: Colors.blue,)),)),Expanded(child: Container())],),)
+    ],),),
+    );
+    },
+    ),
+    ),
+    ),
+    ],),),],),)
+
+
+
+
+    Container(child: Row(children: [Expanded(child: Container(margin: EdgeInsets.only(left: MediaQuery.of(context).size.height*0.015),alignment: Alignment.centerLeft,child: IconButton(onPressed:()async{
+          var dos = await homeScreenlogic.minus(shoppingbasket ,i);
+          shoppingbasket = dos;
+          setState(() {});
+          },icon : Icon( Icons.indeterminate_check_box,color: Colors.blue,),))),Expanded(child: Container(alignment: Alignment.center,child: Text(shoppingbasket[i]["num"].toString(),style: TextStyle(fontSize: MediaQuery.of(context).size.height*0.015),),)),Expanded(child: Container(margin: EdgeInsets.only(right: MediaQuery.of(context).size.height*0.015),alignment: Alignment.centerRight,child: IconButton(onPressed: ()async{
+          var dos = await homeScreenlogic.plus(shoppingbasket,i);
+          shoppingbasket = dos;
+          setState(() {});
+          },icon:Icon( Icons.add_box_sharp,color: Colors.blue,)),))],),)
+
+
+
+          download == true?Container(child: Center(child :SizedBox( width: 30,height: 30, child: CircularProgressIndicator())),):Container(child: contract ==null?Container(width: MediaQuery.of(context).size.width,margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.05),child: Directionality(textDirection: TextDirection.rtl,child:
+                    Text("أنت لست مشترك بأية باقة حتى الان",style: TextStyle(color: Colors.blueAccent,fontSize: MediaQuery.of(context).size.height*0.025),)),):

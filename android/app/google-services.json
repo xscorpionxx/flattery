@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "479739453967",
+    "project_id": "falter-12eff",
+    "storage_bucket": "falter-12eff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479739453967:android:8dcfd5c13cbcf27fa3b97a",
+        "android_client_info": {
+          "package_name": "com.example.teste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479739453967-ubt43hnls5l7d7q8h6s1q5v8pdh840gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn1CY6ENmO2lIavbV7-X2OsPxrotRx8is"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479739453967-ubt43hnls5l7d7q8h6s1q5v8pdh840gg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "479739453967-l1eop6n7crbeapvhq7fikcsd37bv8578.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nram.falter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
